@@ -1,0 +1,14 @@
+{
+  "synthetic": true,
+  "description": "실제 제품/섭취기준과 무관한 알고리즘 테스트",
+  "cases": [
+    {"name": "below", "nutrient": "TEST_NUTRIENT_A", "amounts": [{"value": 99, "unit": "mg", "scope": "supplement"}], "limit": {"value": 100, "unit": "mg", "scope": "supplement"}, "expected": "not_exceeded"},
+    {"name": "equal", "nutrient": "TEST_NUTRIENT_A", "amounts": [{"value": 40, "unit": "mg", "scope": "supplement"}, {"value": 60, "unit": "mg", "scope": "supplement"}], "limit": {"value": 100, "unit": "mg", "scope": "supplement"}, "expected": "not_exceeded"},
+    {"name": "above", "nutrient": "TEST_NUTRIENT_A", "amounts": [{"value": 40, "unit": "mg", "scope": "supplement"}, {"value": 61, "unit": "mg", "scope": "supplement"}], "limit": {"value": 100, "unit": "mg", "scope": "supplement"}, "expected": "exceeded"},
+    {"name": "missing_limit", "nutrient": "TEST_NUTRIENT_A", "amounts": [{"value": 20, "unit": "mg", "scope": "supplement"}], "limit": {"value": null, "unit": "mg", "scope": "supplement"}, "expected": "unknown"},
+    {"name": "missing_amount", "nutrient": "TEST_NUTRIENT_A", "amounts": [{"value": null, "unit": "mg", "scope": "supplement"}], "limit": {"value": 100, "unit": "mg", "scope": "supplement"}, "expected": "unknown"},
+    {"name": "convert_ug", "nutrient": "TEST_NUTRIENT_A", "amounts": [{"value": 60000, "unit": "ug", "scope": "supplement"}, {"value": 41, "unit": "mg", "scope": "supplement"}], "limit": {"value": 100, "unit": "mg", "scope": "supplement"}, "expected": "exceeded"},
+    {"name": "unconvertible_unit", "nutrient": "TEST_NUTRIENT_A", "amounts": [{"value": 10, "unit": "IU", "scope": "supplement"}], "limit": {"value": 100, "unit": "mg", "scope": "supplement"}, "expected": "unknown"},
+    {"name": "scope_mismatch", "nutrient": "TEST_NUTRIENT_A", "amounts": [{"value": 101, "unit": "mg", "scope": "total"}], "limit": {"value": 100, "unit": "mg", "scope": "supplement"}, "expected": "unknown"}
+  ]
+}

@@ -1,0 +1,31 @@
+# 학생 저장소의 Git 루트 .github/workflows/ci.yml에 복사합니다.
+# 루트에는 docs/, data/, project/가 있어야 합니다.
+# 출처: https://docs.astral.sh/uv/guides/integration/github/
+name: Python checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: project
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          version: "0.12.20"
+      - name: Install Python
+        run: uv python install 3.13
+      - name: Sync locked dependencies
+        run: uv sync --locked --dev
+      - name: Test without live API calls
+        run: uv run --locked python -m pytest -q --basetemp=.pytest_cache/tmp
+      - name: Lint
+        run: uv run --locked ruff check .
+      - name: Format check
+        run: uv run --locked ruff format --check .
