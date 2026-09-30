@@ -1,4 +1,4 @@
-# 학생 저장소의 Git 루트 .github/workflows/ci.yml에 복사합니다.
+# 프로젝트 저장소의 Git 루트 .github/workflows/ci.yml에 복사합니다.
 # 루트에는 docs/, data/, project/가 있어야 합니다.
 # 출처: https://docs.astral.sh/uv/guides/integration/github/
 name: Python checks
