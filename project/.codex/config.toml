@@ -1,0 +1,4 @@
+# 필요할 때 실행 승인을 요청합니다.
+approval_policy = "on-request"
+# 작업 공간에서 개발합니다.
+sandbox_mode = "workspace-write"
